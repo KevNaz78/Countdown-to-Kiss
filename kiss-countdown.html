@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiss Countdown 💋</title>
+<style>
+    body {
+        background-color: #ffe6eb;
+        font-family: 'Arial Rounded MT Bold', sans-serif;
+        text-align: center;
+        padding: 40px;
+        color: #b3004b;
+    }
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 0.5em;
+    }
+    .countdown {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    .heart {
+        font-size: 4em;
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+</style>
+</head>
+<body>
+    <div class="heart">💋❤️💋</div>
+    <h1>Kiss Countdown</h1>
+    <div class="countdown" id="countdown"></div>
+    <p>Until your sweet kiss at 12:45 AM 💖</p>
+
+<script>
+function updateCountdown() {
+    const now = new Date();
+    const target = new Date();
+    target.setDate(now.getDate() + 1);
+    target.setHours(0, 45, 0, 0);
+
+    const diff = target - now;
+    if (diff <= 0) {
+        document.getElementById("countdown").innerText = "💋 It's kiss time! 💋";
+        return;
+    }
+
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerText =
+        `${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+</body>
+</html>
